@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercicio 001</title>
+        <style>
+            *{box-sizing: border-box;}
+            html{font-family: helvetica; text-align: center;}
+            .container {width: 250px; margin: 0 auto;}
+            input{width: 100%; padding: 5px; display:block; margin-bottom: 5px;}
+            button{width: 100%; cursor: pointer;}
+            input[type=number]::-webkit-inner-spin-button{-webkit-appearance: none;}
+            input[type=number]{-moz-appearance: textfield; appearance: textfield;}
+            p{margin: 10px;}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Exercicio 001</h1>
+            <input type="number" id="n1" placeholder="Nota 01">
+            <input type="number" id="n2" placeholder="Nota 02">
+            <input type="number" id="n3" placeholder="Nota 03">
+            <input type="number" id="n4" placeholder="Nota 04">
+            <button id="btn">CALCULAR</button>
+            <div><p id="res"></p></div>
+        </div>
+        
+        <script>
+            let n1 = document.querySelector('#n1');
+            let n2 = document.querySelector('#n2');
+            let n3 = document.querySelector('#n3');
+            let n4 = document.querySelector('#n4');
+            let btn = document.querySelector('#btn');
+            let res = document.querySelector('#res');
+
+            btn.addEventListener('click', e => {
+
+                if(n1.value.length == '' || n2.value.length == '' || n3.value.length == '' || n4.value.length == ''){
+                    res.innerHTML = 'Todos os campos são obrigatórios!';
+                } else {
+                    let n01 = Number(n1.value);
+                    let n02 = Number(n2.value);
+                    let n03 = Number(n3.value);
+                    let n04 = Number(n4.value);
+
+                    if(n01 > 10 || n01 < 0 || n02 > 10 || n02 < 0 || n03 > 10 || n03 < 0 || n04 > 10 || n04 < 0){
+                        res.innerHTML = 'Os valores devem estar entre<br><strong>0</strong> e <strong>10</strong>!';
+                    } else {
+                        let calc = (n01+n02+n03+n04) / 4;
+                        res.innerHTML = `A média das notas citadas é <strong>${calc}</strong>.`;
+                        document.getElementsByTagName('input').value = ''; //Seria esse comando o certo para resetar os 4 inputs?
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
+
+<!-- 1 – Calcule a média de diversas notas digitadas pelo usuário. -->
