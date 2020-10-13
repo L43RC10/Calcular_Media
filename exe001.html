@@ -31,10 +31,13 @@
             let n2 = document.querySelector('#n2');
             let n3 = document.querySelector('#n3');
             let n4 = document.querySelector('#n4');
-            let btn = document.querySelector('#btn');
             let res = document.querySelector('#res');
 
-            btn.addEventListener('click', e => {
+            document.querySelector('#btn').addEventListener('click', e => {
+                
+                function limpar(){
+                    inputs.forEach(input => input.value = '');
+                }
 
                 if(n1.value.length == '' || n2.value.length == '' || n3.value.length == '' || n4.value.length == ''){
                     res.innerHTML = 'Todos os campos são obrigatórios!';
@@ -46,10 +49,11 @@
 
                     if(n01 > 10 || n01 < 0 || n02 > 10 || n02 < 0 || n03 > 10 || n03 < 0 || n04 > 10 || n04 < 0){
                         res.innerHTML = 'Os valores devem estar entre<br><strong>0</strong> e <strong>10</strong>!';
+                        limpar();
                     } else {
                         let calc = (n01+n02+n03+n04) / 4;
                         res.innerHTML = `A média das notas citadas é <strong>${calc}</strong>.`;
-                        document.getElementsByTagName('input').value = ''; //Seria esse comando o certo para resetar os 4 inputs?
+                        limpar();
                     }
                 }
             });
